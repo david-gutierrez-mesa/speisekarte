@@ -113,16 +113,7 @@ func main() {
 
         rw.Header().Add("Content-Type", "application/json")
 
-        resp, err := client.Get(service.Url)
-        if (service.CheckOnLine) {
-            if err != nil || resp.StatusCode >= 500 {
-                rw.Write([]byte("{ \"status\": \"offline\" }"))
-            } else {
-                rw.Write([]byte("{ \"status\": \"online\" }"))
-            }
-        } else {
-            rw.Write([]byte("{ \"status\": \"online\" }"))
-        }
+        rw.Write([]byte("{ \"status\": \"online\" }"))
     })
 
     fmt.Printf("Speisekarte is running at http://localhost:%d\n", config.Port)
