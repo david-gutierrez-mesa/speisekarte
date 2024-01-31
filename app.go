@@ -9,11 +9,6 @@ import (
     "time"
 )
 
-func basicAuth(username, password string) string {
-  auth := username + ":" + password
-  return base64.StdEncoding.EncodeToString([]byte(auth))
-}
-
 type Category struct {
     Key string `json:"key"`
     Title string `json:"title"`
@@ -26,7 +21,6 @@ type Service struct {
     Description string `json:"description"`
     Url string `json:"url"`
     OverrideHostname bool `json:"overrideHostname"`
-    CheckOnLine bool `json:"checkOnLine"`
 }
 
 type Config struct {
@@ -113,7 +107,12 @@ func main() {
 
         rw.Header().Add("Content-Type", "application/json")
 
-        rw.Write([]byte("{ \"status\": \"online\" }"))
+        resp, err := client.Get(service.Url)
+        if err != nil || resp.StatusCode >= 500 {
+            rw.Write([]byte("{ \"status\": \"offline\" }"))
+        } else {
+            rw.Write([]byte("{ \"status\": \"online\" }"))
+        }
     })
 
     fmt.Printf("Speisekarte is running at http://localhost:%d\n", config.Port)
