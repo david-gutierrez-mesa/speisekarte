@@ -3,7 +3,7 @@ services:
   speisekarte:
     build: .
     container_name: speisekarte
-    image: dgutimesa/speisekarte:latest
+    image: andreldm/speisekarte:latest
     restart: unless-stopped
     mem_limit: 64m
     volumes:
