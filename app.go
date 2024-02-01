@@ -21,6 +21,7 @@ type Service struct {
     Description string `json:"description"`
     Url string `json:"url"`
     OverrideHostname bool `json:"overrideHostname"`
+    ShowIfOffLine bool `json:"showIfOffLine"`
 }
 
 type Config struct {
@@ -108,7 +109,7 @@ func main() {
         rw.Header().Add("Content-Type", "application/json")
 
         resp, err := client.Get(service.Url)
-        if err != nil || resp.StatusCode >= 500 {
+        if !service.ShowIfOffLine && (err != nil || resp.StatusCode >= 500) {
             rw.Write([]byte("{ \"status\": \"offline\" }"))
         } else {
             rw.Write([]byte("{ \"status\": \"online\" }"))
