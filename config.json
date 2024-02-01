@@ -47,6 +47,29 @@
             "name": "Xfce",
             "description": "Xfce is a lightweight desktop environment for UNIX-like operating systems",
             "url": "https://xfce.org/"
+        },
+        {
+            "key": "noconnection",
+            "category": "news",
+            "name": "Show if off line",
+            "description": "A page without connection and ShowIfOffLine to true",
+            "url": "https://not-existing.org/",
+            "ShowIfOffLine": true
+        },
+        {
+            "key": "noconnectionchecked",
+            "category": "news",
+            "name": "Show if off line to false",
+            "description": "A page without connection and ShowIfOffLine to false",
+            "url": "https://not-existing.org/",
+            "ShowIfOffLine": false
+        },
+        {
+            "key": "noconnectionnoproperty",
+            "category": "news",
+            "name": "Show if off line not set",
+            "description": "A page without connection and ShowIfOffLine not set",
+            "url": "https://not-existing.org/"
         }
     ]
 }
